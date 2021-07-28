@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: correctionex1-deployment
+  namespace: application-web
+spec:
+  selector:
+    matchLabels:
+      name: app-web-deployment
+  template:
+    metadata:
+      labels:
+        app: app-web-deployment
+    spec:
+      containers:
+        - name: container-web
+          image: image-web
+          imagePullPolicy: 'IfNotPresent'
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+        # - name: mysql
+        #   image: mysql
+        #   resources:
+        #     limits:
+        #       memory: "128Mi"
+        #       cpu: "100m"
+        #   env:
+        #     - name: MYSQL_USER
+        #       value: root
+        #     - name: MYSQL_PASSWORD
+        #       value: root
+        #     - name: MYSQL_DATABASE
+        #       value: data

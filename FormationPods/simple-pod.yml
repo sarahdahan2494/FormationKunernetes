@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    name: myapp
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+  - name: simple-image
+    image: simple-image
+    imagePullPolicy: Never
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+  - name: mysql
+    image: mysql
+    env:
+      - name: MYSQL_ROOT_PASSWORD
+        value: root
+      - name: MYSQL_DATABASE
+        value: test
+    #command: []
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"

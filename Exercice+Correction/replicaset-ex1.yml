@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+    name: replicaset2
+    labels:
+      app: replicaweb
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      name: app-web
+  template:
+    metadata:
+      name: pod-web
+      labels:
+        name: app-web
+    spec:
+      containers:
+        - name: container-image
+          image: image-image
+          imagePullPolicy: 'IfNotPresent'
+          ports:
+            - containerPort: 3000
+      ressources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      name: mysql
+      image: mysql
+      resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+      env:
+        - name: MYSQL_USER
+          value: root
+        - name: MYSQL_DATABASE
+          value: data
+        - name: MYSQL_PASSWORD
+          value: root

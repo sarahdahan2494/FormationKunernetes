@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicaset
+  labels:
+    app: monApp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: myapp
+  template:
+    metadata:
+      name: myapp
+      labels:
+        name: myapp
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+

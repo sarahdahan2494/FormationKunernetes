@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: quota-exemple
+spec:
+  hard:
+    limits.cpu: "500m"
+    limits.memory: 1Gi
+    pods: "2"
